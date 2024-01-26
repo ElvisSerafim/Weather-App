@@ -38,7 +38,7 @@ $ git clone <https://github.com/ElvisSerafim/Weather-App.git>
 # Access the project folder
 $ cd weather-app
 
-# Add the .env file on the root of the project
+# Add the .env file on the root of the project. Link to env file: https://drive.google.com/file/d/1gidI5vKmzJoAjlSPkp8zbvalXHWRUVn-/view?usp=sharing
 
 # Execute docker-compose
 $ docker-compose up
