@@ -15,7 +15,6 @@ export default function AutoCompleteSearch({
       isClearable
       radius="lg"
       label="Search"
-      onKeyDown={(e) => e.continuePropagation()}
       onClear={() => searchObjectResponse.setFilterText("")}
       inputProps={{
         classNames: {
