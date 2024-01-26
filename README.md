@@ -18,6 +18,12 @@ The project can be accessed without the need to run it locally. I deployed using
 
 Access link: https://weather-9hwfammfk-elvisserafim.vercel.app/
 
+
+
+https://github.com/ElvisSerafim/Weather-App/assets/38743740/24edbbee-6baa-4289-9011-319c8add4f76
+
+
+
 ### Requirements
 
 Before you begin, you'll need to have the following tools installed on your machine:
