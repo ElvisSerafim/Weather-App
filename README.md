@@ -57,3 +57,7 @@ The following tecnologies were used in the construction of the project:
 - [Tailwind](https://tailwindcss.com/)
 - [NextUI](https://nextui.org/)
 - [Axios](https://axios-http.com/)
+
+## Observations
+If you see this error in the console, ![image](https://github.com/ElvisSerafim/Weather-App/assets/38743740/c0e6dc28-2bcb-4b50-ae84-41c263a89c30)
+it is an issue with NextUI. There is a merge request awaiting approval to address this problem. There is a workaround mentioned at https://github.com/nextui-org/nextui/issues/2074; however, this workaround introduces a typing error that subsequently impacts the project build process. Consequently, I chose not to add it to the project
