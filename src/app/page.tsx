@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import SwitchTemperatureScale from "@/components/SwitchTemperatureScale";
 import MainCard from "@/components/MainCard";
 import ForecastCard from "@/components/ForecastCard";
@@ -13,16 +13,22 @@ import {
 import AutoCompleteSearch from "@/components/AutoCompleteSearch";
 import { getUserLocation } from "@/services/location.service";
 import { useToast } from "@/contexts/ToastContext";
+import format from "@/utils/format";
+import { DAYS_FORECAST } from "@/utils/constants";
 
 export default function App() {
   const { addToast } = useToast();
-  const DAYS_FORECAST = 6;
   const [isSelectedCelsius, setIsSelectedCelsius] = useState<boolean>(true);
   const [currentWeather, setCurrentWeather] = useState<CurrentWeather>();
   const [currentCity, setCurrentCity] = useState<City | undefined>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const getCurrentWeather = async () => {
+  const handleError = (title: string, message: string) => {
+    setIsLoading(false);
+    addToast(title, message, "error");
+  };
+
+  const getCurrentWeather = useCallback(async () => {
     setIsLoading(true);
     try {
       const forecastRequest: GetForecastWeather = {
@@ -36,57 +42,41 @@ export default function App() {
       }
       setIsLoading(false);
     } catch (error) {
-      setIsLoading(false);
-      addToast(
+      handleError(
         "Error loading weather city!",
-        "Check your connection and try again.",
-        "error"
+        "Check your connection and try again."
       );
     }
-  };
+  }, [currentCity]);
 
-  const isNightTime = () => {
-    if (currentWeather) {
-      const currentLocationHour = new Date(
-        currentWeather.location.localtime
-      ).getHours();
-
-      return currentLocationHour >= 17 || currentLocationHour < 5;
-    }
-  };
-
-  const loadUserLocationWeather = async () => {
+  const loadUserLocationWeather = useCallback(async () => {
     try {
       setIsLoading(true);
       const weatherData = await getUserLocation();
       setCurrentWeather(weatherData);
       setIsLoading(false);
     } catch (error) {
-      addToast(
+      handleError(
         "Error on load user location weather!",
-        "Check your location permissions.",
-        "error"
+        "Check your location permissions."
       );
-      setIsLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     if (currentCity) {
       getCurrentWeather();
-      isNightTime();
     }
   }, [currentCity]);
 
   useEffect(() => {
     loadUserLocationWeather();
-    isNightTime();
   }, []);
 
   return (
     <div
       className={`flex flex-col p-6 items-center w-100 min-h-screen ${
-        !isNightTime()
+        !format.isNightTime(currentWeather?.location.localtime!)
           ? "bg-gradient-to-tr from-pink-500 to-yellow-500"
           : "bg-gradient-to-tr from-blue-800 to-gray-900"
       } text-white shadow-lg`}
