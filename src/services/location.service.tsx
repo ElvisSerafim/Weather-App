@@ -3,11 +3,12 @@ import {
   GetForecastWeather,
 } from "@/interfaces/weather.interface";
 import weatherService from "./weather.service";
+import { DAYS_FORECAST } from "@/utils/constants";
 
 const successCallback = async (position: GeolocationPosition) => {
   const forecastRequest: GetForecastWeather = {
     city: position.coords.latitude + "," + position.coords.longitude,
-    days: 6,
+    days: DAYS_FORECAST,
   };
 
   const weatherData = await weatherService.getWeather(forecastRequest);

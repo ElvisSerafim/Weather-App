@@ -156,10 +156,3 @@ export type SymbolMap = {
   Humidity: string;
   "Wind Speed": string;
 };
-
-interface Toast {
-  id: number;
-  message: string;
-  type: string;
-  title: string;
-}
