@@ -18,6 +18,12 @@ The project can be accessed without the need to run it locally. I deployed using
 
 Access link: https://weather-9hwfammfk-elvisserafim.vercel.app/
 
+
+
+https://github.com/ElvisSerafim/Weather-App/assets/38743740/24edbbee-6baa-4289-9011-319c8add4f76
+
+
+
 ### Requirements
 
 Before you begin, you'll need to have the following tools installed on your machine:
@@ -32,7 +38,7 @@ $ git clone <https://github.com/ElvisSerafim/Weather-App.git>
 # Access the project folder
 $ cd weather-app
 
-# Add the .env file on the root of the project
+# Add the .env file on the root of the project. Link to env file: https://drive.google.com/file/d/1gidI5vKmzJoAjlSPkp8zbvalXHWRUVn-/view?usp=sharing
 
 # Execute docker-compose
 $ docker-compose up
@@ -51,3 +57,7 @@ The following tecnologies were used in the construction of the project:
 - [Tailwind](https://tailwindcss.com/)
 - [NextUI](https://nextui.org/)
 - [Axios](https://axios-http.com/)
+
+## Observations
+If you see this error in the console, ![image](https://github.com/ElvisSerafim/Weather-App/assets/38743740/c0e6dc28-2bcb-4b50-ae84-41c263a89c30)
+it is an issue with NextUI. There is a merge request awaiting approval to address this problem. There is a workaround mentioned at https://github.com/nextui-org/nextui/issues/2074; however, this workaround introduces a typing error that subsequently impacts the project build process. Consequently, I chose not to add it to the project
